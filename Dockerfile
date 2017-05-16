@@ -24,9 +24,8 @@ RUN apt-get update \
 	&& rm -r /var/lib/apt/lists/*
 
 WORKDIR /tmp
-
 RUN git config --global http.sslVerify false
 RUN git clone https://github.com/edenhill/librdkafka
-RUN cd librdkafka
+WORKDIR /tmp/librdkafka
 RUN ./configure
 RUN make
