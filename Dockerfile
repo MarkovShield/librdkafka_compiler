@@ -2,6 +2,8 @@ FROM debian:jessie
 
 MAINTAINER Philip Schmid
 
+ENV LIBRDKAFKA_VERSION=v0.9.5
+
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		gcc \
@@ -27,5 +29,6 @@ WORKDIR /tmp
 RUN git config --global http.sslVerify false
 RUN git clone https://github.com/edenhill/librdkafka
 WORKDIR /tmp/librdkafka
+RUN git checkout tags/${LIBRDKAFKA_VERSION}
 RUN ./configure
 RUN make
